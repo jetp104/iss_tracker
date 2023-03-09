@@ -9,7 +9,8 @@ calculated the instantaneous velocity using the x_dot, y_dot, and z_dot value in
 new methods "DELETE" and "POST." One of the routes deletes the entire data set, one posts it all back and the other gives a help sting to the user.
 Within this project aswell I used defensive coding to bar the user from crashing the program using bad inputs. For the project there are five additional routes with two of 
 them using a new python library called GeoPy. Three of the routes give data associated with a certain key: header, metadata, and comment. The other two use the GeoPy
-library to find the exact location of the ISS at a certain epoch or at the current time. 
+library to find the exact location of the ISS at a certain epoch or at the current time. Another purpose was to use containerization and automation when using the 
+`docker-compose.yml` file.
 
 ## Important Files
 `iss_tracker.py`: This is the main script of the project. The iss_tracker script has twelve total routes all described in the table below. This script uses defensive 
