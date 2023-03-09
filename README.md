@@ -29,21 +29,35 @@ Pull the image from docker hub using this command
 ```
 docker pull jetp104/iss_tracker:midterm
 ```
+If done correctly this is what should happen
+
+![image](https://user-images.githubusercontent.com/122917623/224171410-efa74a22-9fcd-4363-967d-fbfed5ebd303.png)
+
 ### 2. 
 Build this image by using this command 
 ```
 docker build -t jetp104/iss_tracker:midterm .
 ```
+If done correctly this is what should happen 
+
+![image](https://user-images.githubusercontent.com/122917623/224171606-50af052c-1f7d-470b-bce0-d72fca6d0606.png)
+
 ### 3. 
 Run the docker image by using this command
 ```
 docker run -it --rm -p 5000:5000 jetp104/iss_tracker:midterm
 ```
+If done correctly your shell should be taken over and look like this
+
+![image](https://user-images.githubusercontent.com/122917623/224171813-873fdc8c-6ba9-4a69-8bef-5cd212dab5c3.png)
 
 To check if the image was succesfully built use this command 
 ```
 docker images
 ```
+If the image was built correctly this will show up
+
+![image](https://user-images.githubusercontent.com/122917623/224171932-0b2b8996-60a3-4b57-b5ea-71644a3b47ad.png)
 
 ### Optional Step in process 
 Once you docker pull image from docker hub you if you have the `docker-compose.yml` file 
@@ -51,7 +65,10 @@ you can use the command
 ```
 docker-compose up 
 ```
-to fully automate the development of the app. 
+to fully automate the development of the app, which will look like this 
+
+![image](https://user-images.githubusercontent.com/122917623/224172236-af144565-7ff0-429e-a687-c635babeeb45.png)
+
 
 ## Routes 
 This app has a total of 13 different routes that are listed in this table. 
@@ -59,6 +76,7 @@ This app has a total of 13 different routes that are listed in this table.
 |Routes|What They Do| 
 |------|------------|
 |   /  |This route returns the entire data set used for the app| 
+|/keys|This route returns the list of keys used in the data set| 
 |/epochs| A list of all Epochs in the data set| 
 |/epochs/<epoch<epoch>>/| State vectors for a specific Epoch from the data set|
 | /epochs/<epoch<epoch>>/speed| Instantaneous speed for a specific Epoch in the data set| 
@@ -71,3 +89,29 @@ This app has a total of 13 different routes that are listed in this table.
 |/metadata| Return ‘metadata’ dict object from ISS data| 
 |/epochs/<epoch<epoch>>/location| Return latitude, longitude, altitude, and geoposition for given Epoch|
 |/now| Return latitude, longitude, altidue, and geoposition for Epoch that is nearest in time| 
+
+## How to interact with the app and Interpret the results from the routes 
+To interact with the application you will use one of the three starting commands
+### 1. 
+```
+curl localhost:5000
+```
+### 2. 
+```
+curl -X DELETE localhost:5000
+```
+### 3. 
+```
+curl -X POST localhost:5000
+```
+These three commands will give you the ability to access the routes. In order of the table 
+here are the routes, what they output, and how to interpret the output. 
+
+### 1. /
+use the command 
+```
+curl localhost:5000/ 
+```
+If entetered correctly this will be the output 
+
+
