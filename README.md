@@ -49,7 +49,7 @@ docker run -it --rm -p 5000:5000 jetp104/iss_tracker:midterm
 ```
 If done correctly your shell should be taken over and look like this
 
-![image](https://user-images.githubusercontent.com/122917623/224171813-873fdc8c-6ba9-4a69-8bef-5cd212dab5c3.png)
+![image](https://user-images.githubusercontent.com/122917623/224187207-00112451-0b49-424b-aa8d-3e0715e07cfb.png)
 
 To check if the image was succesfully built use this command 
 ```
@@ -67,7 +67,8 @@ docker-compose up
 ```
 to fully automate the development of the app, which will look like this 
 
-![image](https://user-images.githubusercontent.com/122917623/224172236-af144565-7ff0-429e-a687-c635babeeb45.png)
+![image](https://user-images.githubusercontent.com/122917623/224187131-ae9e7f38-11dd-4568-8712-efb1b0f06e26.png)
+
 
 
 ## Routes 
