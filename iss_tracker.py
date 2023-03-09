@@ -221,7 +221,12 @@ Paths:
     (/epochs/<epoch>/speed)        This path uses the GET method to return instantaneous speed for a specific Epoch in the data set 
     (/help)                        This path uses the GET method to return help text that briefly describes each route
     (/delete-data)                 This path uses the DELETE method to delete all data from the dictioanry object
-    (/post-data)                   This path uses the POST method to reload the dictionary object with data from the web""" 
+    (/post-data)                   This path uses the POST method to reload the dictionary object with data from the web
+    (/comment)                     This path uses the GET method to return comment list object from ISS data
+    (/header)                      This path uses the GET method to return header dict object from ISS data
+    (/metadata)                    This path uses the GET method to return metadata dict object from ISS data
+    (/epochs/<epoch>/location)     This path uses the GET method to return latitude, longitude, altitude, and geoposition for given Epoch
+    (/now)                         This path uses the GET method to return latitude, longitude, altidue, and geoposition for Epoch that is nearest in time\n""" 
     return paths
 
 @app.route('/delete-data', methods=['DELETE'])
