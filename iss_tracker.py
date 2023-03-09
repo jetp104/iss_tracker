@@ -10,6 +10,9 @@ from geopy.geocoders import Nominatim
 app = Flask(__name__)
 
 def get_config():
+    """
+    Read a configuration fole and retun the assoicated values, or return a default
+    """
     default_config = {"debug": True}
     try:
         with open('config.yaml', 'r') as f:
