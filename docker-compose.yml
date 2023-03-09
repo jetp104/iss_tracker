@@ -6,8 +6,8 @@ services:
                 build:
                         context: ./
                         dockerfile: ./Dockerfile
+                image: jetp104/iss_tracker:midterm
                 ports: 
                       - 5000:5000        
-                image: jetp104/iss_tracker:midterm
                 volumes:
                      - ./config.yaml:/config.yaml
