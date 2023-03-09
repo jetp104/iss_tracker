@@ -9,21 +9,6 @@ from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
 
-def get_config():
-    """
-    Read a configuration fole and retun the assoicated values, or return a default
-    """
-    default_config = {"debug": True}
-    try:
-        with open('config.yaml', 'r') as f:
-            return yaml.safe_load(f)
-    except Exception as e:
-        print(f"Couldn't load the config file; details: {e}")
-    # if we couldn't load the config file, return the default config
-    return default_config
-
-
-
 def get_data() -> list:
     """
     Gets the data from the NASA website for the ISS trejectories 
@@ -411,8 +396,5 @@ def now() -> dict:
 
 
 if __name__ == '__main__':
-    config = get_config()
-    if config.get('debug', True):
-        app.run(debug=True, host='0.0.0.0')
-    else: 
-        app.run(host='0.0.0.0') 
+    app.run(debug=True, host='0.0.0.0')
+    
