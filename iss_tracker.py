@@ -327,11 +327,12 @@ def location(epoch: list) -> dict:
         mins = float(the_epoch['EPOCH'][12:14]) 
      
         lat = math.degrees(math.atan2(z, math.sqrt(x**2 + y**2))) 
-        lon = math.degrees(math.atan2(y,x)) - ((hrs-12)+(mins/60))*(360/24) + 24
+        lon = math.degrees(math.atan2(y,x)) - ((hrs-12)+(mins/60))*(360/24) + 32
         alt = math.sqrt(x**2 + y**2 + z**2) - MEAN_EARTH_RADIUS
-    
+        
+       
         lon = lon_correct(lon)   
-         
+        
 
         geocoder = Nominatim(user_agent='iss_tracker')
         geoloc = geocoder.reverse((lat,lon), zoom=15, language='en') 
@@ -376,25 +377,21 @@ def now() -> dict:
     try: 
         time_now = time.time()
         epochs_data = epochs() 
-        time_epoch = time.mktime(time.strptime(epochs_data[0][:-5], '%Y-%jT%H:%M:%S'))
-        minimum = time_now - time_epoch 
-
-         
+        diff = 1000000000000
+ 
         for epoch in epochs_data:
             time_epoch = time.mktime(time.strptime(epoch[:-5], '%Y-%jT%H:%M:%S'))
-            compare = time_now - time_epoch
-            if abs(compare) < abs(minimum):  
-                minimum = compare 
+            minimum = time_now - time_epoch
+            if abs(minimum) < abs(diff):  
+                diff = minimum 
                 closest_epoch = epoch 
-                
-        now_loc = location(closest_epoch)
-        now_speed = speed(closest_epoch) 
+                          
 
         now = {} 
         now['closest_epoch'] = closest_epoch 
-        now['seconds_from_now'] = minimum 
-        now['location'] = now_loc
-        now['speed'] = now_speed
+        now['seconds_from_now'] = minimum  
+        now['location'] = location(closest_epoch)
+        now['speed'] = speed(closest_epoch) 
 
         return now 
     except ValueError: 
