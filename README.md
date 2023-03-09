@@ -21,3 +21,41 @@ other dependencies such as: `pyyaml`, `Flask`, `requests`, `GeoPy` and `xmltodic
 `docker-compose.yml`: This file is a compose file to automate the development of the app. It configures the build image with the specific tag and binds the appropriate 
 ports from the container to the host. 
 
+## How to Download and Build App
+To Download and use the containerized app follow these instructions. 
+
+### 1. 
+Pull the image from docker hub using this command
+```
+docker pull jetp104/iss_tracker:midterm
+```
+### 2. 
+Build this image by using this command 
+```
+docker build -t jetp104/iss_tracker:midterm .
+```
+### 3. 
+Run the docker image by using this command
+```
+docker run -it --rm -p 5000:5000 jetp104/iss_tracker:midterm
+```
+
+To check if the image was succesfully built use this command 
+```
+docker images
+```
+
+### Optional Step in process 
+Once you docker pull image from docker hub you if you have the `docker-compose.yml` file 
+you can use the command 
+```
+docker-compose up 
+```
+to fully automate the development of the app. 
+
+## How To Interact with the App 
+This app has a total of 12 different routes that are listed in this table. 
+
+|Routes|What They Do| 
+|------|------------|
+|   /  |This route returns the entire data set used for the app| 
