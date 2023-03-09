@@ -78,7 +78,7 @@ This app has a total of 14 different routes that are listed in this table.
 |   /  |This route returns the entire data set used for the app| 
 |/keys|This route returns the list of keys used in the data set| 
 |/epochs| A list of all Epochs in the data set| 
-|/epochs/<epoch<epoch>>/| State vectors for a specific Epoch from the data set|
+|/epochs/<epoch<epoch>>| State vectors for a specific Epoch from the data set|
 | /epochs/<epoch<epoch>>/speed| Instantaneous speed for a specific Epoch in the data set| 
 |/epochs?limit=int&offset=int| Return modified list of Epochs given query parameters| 
 |/help| Return help text (as a string) that briefly describes each route| 
