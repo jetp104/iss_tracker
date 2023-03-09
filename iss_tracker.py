@@ -9,19 +9,6 @@ from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
 
-def get_config():
-    default_config = {"debug": True}
-    try:
-        with open('config.yaml', 'r') as f:
-            return yaml.safe_load(f)
-    except Exception as e:
-        print(f"Couldn't load the config file; details: {e}")
-    # if we couldn't load the config file, return the default config
-    return default_config
-
-
-
-
 def get_data() -> list:
     """
     Gets the data from the NASA website for the ISS trejectories 
@@ -340,10 +327,11 @@ def location(epoch: list) -> dict:
         mins = float(the_epoch['EPOCH'][12:14]) 
      
         lat = math.degrees(math.atan2(z, math.sqrt(x**2 + y**2))) 
-        lon = math.degrees(math.atan2(y,x)) - ((hrs-12)+(mins/60))*(360/24) + 32
+        lon = math.degrees(math.atan2(y,x)) - ((hrs-12)+(mins/60))*(360/24) + 24
         alt = math.sqrt(x**2 + y**2 + z**2) - MEAN_EARTH_RADIUS
     
         lon = lon_correct(lon)   
+         
 
         geocoder = Nominatim(user_agent='iss_tracker')
         geoloc = geocoder.reverse((lat,lon), zoom=15, language='en') 
@@ -414,8 +402,5 @@ def now() -> dict:
 
 
 if __name__ == '__main__':
-    config = get_config()
-    if config.get('debug', True):
-        app.run(debug=True, host='0.0.0.0')
-    else:
-        app.run(host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
+   
