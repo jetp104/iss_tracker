@@ -71,7 +71,7 @@ to fully automate the development of the app, which will look like this
 
 
 ## Routes 
-This app has a total of 13 different routes that are listed in this table. 
+This app has a total of 14 different routes that are listed in this table. 
 
 |Routes|What They Do| 
 |------|------------|
@@ -114,4 +114,148 @@ curl localhost:5000/
 ```
 If entetered correctly this will be the output 
 
+![image](https://user-images.githubusercontent.com/122917623/224175166-6bee923e-21af-473b-859a-d6c7b9f14357.png)
 
+Interpretation: This is the entire data set including all the keys and values assoicated with those keys 
+  
+### 2. /keys 
+use the command
+```
+curl localhost:5000/keys
+```
+If entered correctly this will be the output 
+
+![image](https://user-images.githubusercontent.com/122917623/224175467-b568efb7-f48e-4f2a-ad87-b9020b0f7117.png)
+
+Interpretation: This function returns the keys assoicated with the data set in the case of the picture it returns the values attached to the statevectors key. 
+  
+### 3. /epochs
+use the command
+```
+curl localhost:5000/epochs
+```
+If entered correctly this will be the output 
+  
+![image](https://user-images.githubusercontent.com/122917623/224175912-30be3af5-d88c-4f42-b42a-d542116a915d.png)
+
+Interpretaion: This route returns the IDs of all the epochs in the data set associated with the statevectors key. 
+  
+### 4. /epochs/<epoch<epoch>>
+use the command 
+```
+curl localhost:5000/epochs/"2023-082T12:00:00.000Z"
+```
+If entered correctly this will be the output
+
+![image](https://user-images.githubusercontent.com/122917623/224176236-f0c9fee6-44d6-4465-a3cc-8b8f40e93098.png)
+
+Interpretation: This route returns the values associated with the specified epoch 
+  
+### 5. /epochs/<epoch<epoch>>/speed
+use the command 
+```
+curl localhost:5000/epochs/"2023-082T12:00:00.000Z"/speed 
+```
+If entered correctly this will be the output
+  
+![image](https://user-images.githubusercontent.com/122917623/224176580-4ef3e9d8-251e-49c8-b153-7722c9152d6e.png)
+
+Interpreation: This gives the instantenous velocity of the specified epoch along with the units.
+  
+### 6. /epochs?limit=int&offset=int
+use the command
+```
+curl 'localhost:5000/epochs?limit=5&offset=10'  
+```
+If entered correctly this will be the output 
+  
+![image](https://user-images.githubusercontent.com/122917623/224176973-6848108b-fb90-46df-879f-b7a744fb3112.png)
+
+Interpretation: The offset value gives where in the list of epoch IDs you want to start and the limit asks how mnay you want to return from that starting point so in the picture I wanted to start at the 5th epoch in the list and only return 1 epoch. 
+
+### 7. /help 
+use the command
+```
+curl localhost:5000/help
+```
+If entered correctly this will be the output 
+
+![image](https://user-images.githubusercontent.com/122917623/224178979-cb0e5df8-457c-4898-84d2-9090b891384c.png)
+
+Interpretation: This just returns a string that tells the user what method each route uses and what they return 
+  
+### 8. /delete-data
+use the command 
+```
+curl -X DELETE localhost:5000/delete-data  
+```
+If entered correctly this will be the output
+  
+![image](https://user-images.githubusercontent.com/122917623/224179300-8c37d775-7b6c-4862-8811-f85bd1df596a.png)
+
+Interpretation: The string returned will say deleted and that means the entire data set was deleted
+  
+### 9. /post-data
+use the command
+```
+curl -X POST localhost:5000/post-data
+```
+If entered correctly this will be the output 
+  
+![image](https://user-images.githubusercontent.com/122917623/224179558-51cfcd8c-5363-4e19-9799-d1107aaff2c3.png)
+
+Interpretation: The string returned will say the data has been posted which means the entire data set is back and refreshed from the delete-data command
+
+### 10. /comment
+use the command
+```
+curl localhost:5000/comment
+```
+If done correctly this will be the output 
+  
+![image](https://user-images.githubusercontent.com/122917623/224180222-63540962-947f-4256-a17a-f71ccafb34be.png)
+
+Interpretation: This returns the comments keys attached to the data set which is the comments made by the people who keep the data set updated. 
+ 
+### 11. /header
+use the command
+```
+curl localhost:5000/header
+```
+If done correctly this will be the output 
+
+![image](https://user-images.githubusercontent.com/122917623/224180552-c54a36d4-ff61-4ddf-8d5f-6b371abfd0ab.png)
+
+Interpretation: This returns the header key assigned to the data set which is just the date the data was created and the people who originated it. 
+### 12. /metadata
+use the command
+```
+curl localhost:5000/metadata
+```
+If done correctly this will be the output 
+
+![image](https://user-images.githubusercontent.com/122917623/224180856-79fcb0b8-e22f-4c3a-b7c0-3ab2e3393aee.png)
+
+Interpretation: This returns the metadata key which includes the refrence frame which is earth, the start time, and what the data tracks
+  
+### 13. /epochs/<epoch<epoch>>/location
+use the command
+```
+curl localhost:5000/epochs/<epoch<epoch>>/location
+```
+If done correctly the output will be
+  
+![image](https://user-images.githubusercontent.com/122917623/224181191-235ba6ae-1b83-4f4e-b030-7849bfc2aa9b.png)
+
+Interpretation: This returns the longitude, latitude, and altitude, along with altitude units, and where the ISS was over at the time of the specified epoch
+  
+### 14. /now
+use the command 
+```
+curl localhost:5000/now
+```
+If done correctly the output will look like this
+  
+![image](https://user-images.githubusercontent.com/122917623/224182047-48573f66-570b-45cb-858f-1f1c1e34af46.png)
+    
+Interpretation: This returns the latitude, longitude, altidue along with the units, the speed of the epoch, the seconds the closest epoch was and geoposition for Epoch that is nearest in time to when the route was called. 
