@@ -9,6 +9,18 @@ from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
 
+def get_config():
+    default_config = {"debug": True}
+    try:
+        with open('config.yaml', 'r') as f:
+            return yaml.safe_load(f)
+    except Exception as e:
+        print(f"Couldn't load the config file; details: {e}")
+    # if we couldn't load the config file, return the default config
+    return default_config
+
+
+
 def get_data() -> list:
     """
     Gets the data from the NASA website for the ISS trejectories 
@@ -330,9 +342,13 @@ def location(epoch: list) -> dict:
         lon = math.degrees(math.atan2(y,x)) - ((hrs-12)+(mins/60))*(360/24) + 32
         alt = math.sqrt(x**2 + y**2 + z**2) - MEAN_EARTH_RADIUS
         
-       
-        lon = lon_correct(lon)   
-        
+        if abs(lon) > 180: 
+            if lon > 0: 
+                lon = lon-180
+                lon = 180-lon
+            else: 
+                lon = lon+180
+                lon = 180+lon  
 
         geocoder = Nominatim(user_agent='iss_tracker')
         geoloc = geocoder.reverse((lat,lon), zoom=15, language='en') 
@@ -347,20 +363,7 @@ def location(epoch: list) -> dict:
     except TypeError: 
         return "Make sure epoch ID is correct or the data was deleted\n" 
     
-def lon_correct(lon) -> float:
-    """ 
-    Normalizes the longitude value when it leaves the -180 range
-    Args: 
-        lon (float): The longitude value given from the equation 
-    returns: 
-        lon (float): The longitude value after the correection
-    """
-    while lon >= 180:
-        lon -= 360
-    while lon <= -180:
-        lon += 360
 
-    return lon
 
 @app.route('/now', methods = ['GET'])
 def now() -> dict:
@@ -377,13 +380,14 @@ def now() -> dict:
     try: 
         time_now = time.time()
         epochs_data = epochs() 
-        diff = 1000000000000
+        time_epoch = time.mktime(time.strptime(epochs_data[0][:-5], '%Y-%jT%H:%M:%S'))
+        minimum = time_now - time_epoch 
  
         for epoch in epochs_data:
             time_epoch = time.mktime(time.strptime(epoch[:-5], '%Y-%jT%H:%M:%S'))
-            minimum = time_now - time_epoch
-            if abs(minimum) < abs(diff):  
-                diff = minimum 
+            diff = time_now - time_epoch
+            if abs(diff) < abs(minimum):  
+                minimum = diff 
                 closest_epoch = epoch 
                           
 
@@ -399,5 +403,8 @@ def now() -> dict:
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
-   
+    config = get_config()
+    if config.get('debug', True):
+        app.run(debug=True, host='0.0.0.0')
+    else: 
+        app.run(host='0.0.0.0') 
