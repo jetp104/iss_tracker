@@ -54,14 +54,14 @@ docker-compose up
 to fully automate the development of the app. 
 
 ## Routes 
-This app has a total of 12 different routes that are listed in this table. 
+This app has a total of 13 different routes that are listed in this table. 
 
 |Routes|What They Do| 
 |------|------------|
 |   /  |This route returns the entire data set used for the app| 
 |/epochs| A list of all Epochs in the data set| 
-|/epochs/<epoch>/| State vectors for a specific Epoch from the data set|
-| /epochs/<epoch>/speed| Instantaneous speed for a specific Epoch in the data set| 
+|/epochs/<epoch<epoch>>/| State vectors for a specific Epoch from the data set|
+| /epochs/<epoch<epoch>>/speed| Instantaneous speed for a specific Epoch in the data set| 
 |/epochs?limit=int&offset=int| Return modified list of Epochs given query parameters| 
 |/help| Return help text (as a string) that briefly describes each route| 
 |/delete-data| Delete all data from the dictionary object| 
@@ -69,5 +69,5 @@ This app has a total of 12 different routes that are listed in this table.
 |/comment| Return ‘comment’ list object from ISS data| 
 |/header| Return ‘header’ dict object from ISS data| 
 |/metadata| Return ‘metadata’ dict object from ISS data| 
-|/epochs/<epoch>/location| Return latitude, longitude, altitude, and geoposition for given Epoch|
+|/epochs/<epoch<epoch>>/location| Return latitude, longitude, altitude, and geoposition for given Epoch|
 |/now| Return latitude, longitude, altidue, and geoposition for Epoch that is nearest in time| 
