@@ -38,9 +38,9 @@ If done correctly this is what should happen
 ![image](https://user-images.githubusercontent.com/122917623/224171410-efa74a22-9fcd-4363-967d-fbfed5ebd303.png)
 
 ### 2. 
-Build this image by using this command (Note: build image in the same place you pulled the image)
+Build a new image by using this command (Note: build image in the same place you pulled the image)
 ```
-docker build -t jetp104/iss_tracker:midterm .
+docker build -t <your_username>/iss_tracker:midterm .
 ```
 If done correctly this is what should happen 
 
