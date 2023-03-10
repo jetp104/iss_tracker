@@ -63,7 +63,7 @@ If the image was built correctly this will show up
 
 ![image](https://user-images.githubusercontent.com/122917623/224171932-0b2b8996-60a3-4b57-b5ea-71644a3b47ad.png)
 
-### To use a pre-containerized copy of the app 
+### Automated way to use the app 
 Once you docker pull image from docker hub you if you have the `docker-compose.yml` file 
 you can use the command 
 ```
