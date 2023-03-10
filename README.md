@@ -12,6 +12,9 @@ them using a new python library called GeoPy. Three of the routes give data asso
 library to find the exact location of the ISS at a certain epoch or at the current time. Another purpose was to use containerization and automation when using the 
 `docker-compose.yml` file.
 
+## Data used for the App 
+To access the xml file used for the app visit this link that will take you to the NASA website. https://spotthestation.nasa.gov/trajectory_data.cfm Once there scroll down and choose the xml link which will take you to the data set. The data set we use has the ids of the epochs, each epochs x, y, and z location, and it's speeds in the x, y, and z direction.
+
 ## Important Files
 `iss_tracker.py`: This is the main script of the project. The iss_tracker script has twelve total routes all described in the table below. This script uses defensive 
 programming strategies to make sure it runs without breaking and will give a message if something is incorrect. 
@@ -75,22 +78,22 @@ to fully automate the development of the app, which will look like this
 ## Routes 
 This app has a total of 14 different routes that are listed in this table. 
 
-|Routes|What They Do| 
-|------|------------|
-|   /  |This route returns the entire data set used for the app| 
-|/keys|This route returns the list of keys used in the data set| 
-|/epochs| A list of all Epochs in the data set| 
-|/epochs/<epoch<epoch>>| State vectors for a specific Epoch from the data set|
-| /epochs/<epoch<epoch>>/speed| Instantaneous speed for a specific Epoch in the data set| 
-|/epochs?limit=int&offset=int| Return modified list of Epochs given query parameters| 
-|/help| Return help text (as a string) that briefly describes each route| 
-|/delete-data| Delete all data from the dictionary object| 
-|/post-data| Reload the dictionary object with data from the web|
-|/comment| Return ‘comment’ list object from ISS data| 
-|/header| Return ‘header’ dict object from ISS data| 
-|/metadata| Return ‘metadata’ dict object from ISS data| 
-|/epochs/<epoch<epoch>>/location| Return latitude, longitude, altitude, and geoposition for given Epoch|
-|/now| Return latitude, longitude, altidue, and geoposition for Epoch that is nearest in time| 
+|Routes|Method|What They Do| 
+|------|------|------------|
+|   /  |GET|This route returns the entire data set used for the app| 
+|/keys|GET|This route returns the list of keys used in the data set| 
+|/epochs|GET| A list of all Epochs in the data set| 
+|/epochs/<epoch<epoch>>|GET| State vectors for a specific Epoch from the data set|
+| /epochs/<epoch<epoch>>/speed|GET| Instantaneous speed for a specific Epoch in the data set| 
+|/epochs?limit=int&offset=int| GET|Return modified list of Epochs given query parameters| 
+|/help| GET|Return help text (as a string) that briefly describes each route| 
+|/delete-data| DELETE|Delete all data from the dictionary object| 
+|/post-data| POST|Reload the dictionary object with data from the web|
+|/comment| GET|Return ‘comment’ list object from ISS data| 
+|/header| GET|Return ‘header’ dict object from ISS data| 
+|/metadata| GET|Return ‘metadata’ dict object from ISS data| 
+|/epochs/<epoch<epoch>>/location| GET|Return latitude, longitude, altitude, and geoposition for given Epoch|
+|/now| GET|Return latitude, longitude, altidue, and geoposition for Epoch that is nearest in time| 
 
 ## How to interact with the app and Interpret the results from the routes 
 To interact with the application you will use one of the three starting commands
