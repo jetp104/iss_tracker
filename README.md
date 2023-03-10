@@ -246,7 +246,7 @@ Interpretation: This returns the metadata key which includes the refrence frame 
 ### 13. /epochs/<epoch<epoch>>/location
 use the command
 ```
-curl localhost:5000/epochs/<epoch<epoch>>/location
+curl localhost:5000/epochs/"2023-082T12:00:00.000Z"/location
 ```
 If done correctly the output will be
   
