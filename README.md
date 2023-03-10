@@ -3,20 +3,13 @@
 Scenario: In Homework 05, we added more routes to our ISS tracker. Now, we will finish off this project by adding a few final routes, automate deployment with Docker 
 Compose, and write up a short document describing the project.
 
-The purpose of this project was to add onto homework04 and homeowrk05. In homework04 The purpose of the project was to read in the ISS data from an xml link. Using the 
-link I had to find the data associated with the epochs. Then using that data with the epochs I created a path to a single epoch. Once the single epoch was returned I
-calculated the instantaneous velocity using the x_dot, y_dot, and z_dot value in the data set. In this homework there is three added routes with two of them using completley
-new methods "DELETE" and "POST." One of the routes deletes the entire data set, one posts it all back and the other gives a help sting to the user.
-Within this project aswell I used defensive coding to bar the user from crashing the program using bad inputs. For the project there are five additional routes with two of 
-them using a new python library called GeoPy. Three of the routes give data associated with a certain key: header, metadata, and comment. The other two use the GeoPy
-library to find the exact location of the ISS at a certain epoch or at the current time. Another purpose was to use containerization and automation when using the 
-`docker-compose.yml` file.
+The purpose of this project was to add onto homework04 and homeowrk05. In homework04 The purpose of the project was to read in the ISS data from an xml link. Using the link, I had to find the data associated with the epochs. Then using that data with the epochs, I created a path to a single epoch. Once the single epoch was returned, I calculated the instantaneous velocity using the x_dot, y_dot, and z_dot value in the data set. In this homework there is three added routes with two of them using completely new methods "DELETE" and "POST." One of the routes deletes the entire data set, one posts it all back and the other gives a help sting to the user. Within this project as well I used defensive coding to bar the user from crashing the program using bad inputs. For the project there are five additional routes with two of them using a new python library called GeoPy. Three of the routes give data associated with a certain key: header, metadata, and comment. The other two use the GeoPy library to find the exact location of the ISS at a certain epoch or at the current time. Another purpose was to use containerization and automation when using the docker-compose.yml file.
 
 ## Data used for the App 
 To access the xml file used for the app visit this link that will take you to the NASA website. https://spotthestation.nasa.gov/trajectory_data.cfm Once there scroll down and choose the xml link which will take you to the data set. The data set we use has the ids of the epochs, each epochs x, y, and z location, and it's speeds in the x, y, and z direction.
 
 ## Important Files
-`iss_tracker.py`: This is the main script of the project. The iss_tracker script has twelve total routes all described in the table below. This script uses defensive 
+`iss_tracker.py`: This is the main script of the project. The iss_tracker script has fourteen total routes all described in the table below. This script uses defensive 
 programming strategies to make sure it runs without breaking and will give a message if something is incorrect. 
 
 `Dockerfile`: This file containerize the `iss_tracker.py` script. The image created by the Dockerfile contains the same version of python used to create the script and 
@@ -170,7 +163,7 @@ If entered correctly this will be the output
   
 ![image](https://user-images.githubusercontent.com/122917623/224176580-4ef3e9d8-251e-49c8-b153-7722c9152d6e.png)
 
-Interpreation: This gives the instantenous velocity of the specified epoch along with the units.
+Interpreation: This gives the instantenous velocity of the specified epoch along with the units (km/s).
   
 ### 6. /epochs?limit=int&offset=int
 use the command
@@ -257,7 +250,7 @@ If done correctly the output will be
   
 ![image](https://user-images.githubusercontent.com/122917623/224181191-235ba6ae-1b83-4f4e-b030-7849bfc2aa9b.png)
 
-Interpretation: This returns the longitude, latitude, and altitude, along with altitude units, and where the ISS was over at the time of the specified epoch
+Interpretation: This returns the longitude, latitude, and altitude, along with altitude units (km), and where the ISS was over at the time of the specified epoch
   
 ### 14. /now
 use the command 
@@ -268,4 +261,4 @@ If done correctly the output will look like this
   
 ![image](https://user-images.githubusercontent.com/122917623/224182047-48573f66-570b-45cb-858f-1f1c1e34af46.png)
     
-Interpretation: This returns the latitude, longitude, altidue along with the units, the speed of the epoch, the seconds the closest epoch was and geoposition for Epoch that is nearest in time to when the route was called. 
+Interpretation: This returns the latitude, longitude, altidue along with the units(km), the speed of the epoch (km/s), the seconds the closest epoch was and geoposition for Epoch that is nearest in time to when the route was called. 
