@@ -25,6 +25,11 @@ other dependencies such as: `pyyaml`, `Flask`, `requests`, `GeoPy` and `xmltodic
 `docker-compose.yml`: This file is a compose file to automate the development of the app. It configures the build image with the specific tag and binds the appropriate 
 ports from the container to the host. 
 
+## How to run the App directly 
+To build the app directly use the command
+```
+flask --app iss_tracker --debug run
+```
 ## How to Download and Build App
 To Download and use the containerized app follow these instructions. 
 
