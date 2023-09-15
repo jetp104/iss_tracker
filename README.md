@@ -217,7 +217,6 @@ curl localhost:5000/comment
 If done correctly this will be the output 
   
 ![image](https://user-images.githubusercontent.com/122917623/224180222-63540962-947f-4256-a17a-f71ccafb34be.png)
-
 Interpretation: This returns the comments keys attached to the data set which is the comments made by the people who keep the data set updated. 
  
 ### 11. /header
